@@ -1,15 +1,11 @@
 <template>
-  <div>{{ state.counter }}</div>
+  <div>{{ counter }} | {{ doubleCounter }}</div>
+  <p ref="desc">desc</p>
 </template>
 
 <script setup>
-import {
-  computed,
-  defineProps,
-  onMounted,
-  onUnmounted,
-  reactive
-} from "@vue/runtime-core"
+import { defineProps, onMounted, onUnmounted, ref, watch } from "vue"
+import { useContent } from "./"
 // 属性定义
 const props = defineProps({
   counter: {
@@ -18,19 +14,13 @@ const props = defineProps({
   }
 })
 
-const state = reactive({
-  counter: props.counter,
-  doubleCounter: computed(() => state.counter * 2)
-})
+const { counter, doubleCounter } = useContent(props)
 
-let timer
-onMounted(() => {
-  timer = setInterval(() => {
-    state.counter++
-  }, 2000)
-})
-
-onUnmounted(() => {
-  clearInterval(timer)
+// 使用界面中的元素引用
+const desc = ref(null)
+// 直接侦听ref
+watch(counter, (val, oldVal) => {
+  const p = desc.value
+  p.textContent = `counter change from ${oldVal} to ${val}`
 })
 </script>
