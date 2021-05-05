@@ -1,8 +1,6 @@
 import { ConfigEnv, loadEnv, UserConfig } from "vite"
-import vue from "@vitejs/plugin-vue"
 import { createVitePlugins } from "./build/vite"
 import { wrapperEnv, getRootPath } from "./build/utils"
-import path from "path"
 
 // https://vitejs.dev/config/
 export default ({ command, mode }: ConfigEnv): UserConfig => {
