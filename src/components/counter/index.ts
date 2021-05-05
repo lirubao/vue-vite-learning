@@ -1,4 +1,6 @@
-import { reactive, computed, toRefs, ToRefs, onMounted, onUnmounted } from "vue"
+import type { ToRefs } from "vue"
+import { reactive, computed, toRefs, onMounted, onUnmounted } from "vue"
+
 import Counter from "./Counter.vue"
 
 export interface CounterAttributes {
