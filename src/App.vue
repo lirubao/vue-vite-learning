@@ -1,18 +1,12 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
   <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <Counter :counter="2" />
 </template>
 
-<script lang="ts">
+<script setup>
 import { defineComponent } from "vue"
-import HelloWorld from "./components/HelloWorld.vue"
-
-export default defineComponent({
-  name: "App",
-  components: {
-    HelloWorld
-  }
-})
+import { HelloWorld, Counter } from "./components"
 </script>
 
 <style>

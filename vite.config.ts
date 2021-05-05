@@ -17,7 +17,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     },
     resolve: {
       alias: {
-        "@": getRootPath("src")
+        "@": getRootPath("src"),
+        comps: getRootPath("src/components")
       }
     },
     plugins: createVitePlugins(viteEnv, isBuild)
