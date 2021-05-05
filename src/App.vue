@@ -1,12 +1,17 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
-  <Counter :counter="2" />
+  <!-- <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" /> -->
+  <!-- <Counter :counter="2" /> -->
+  <ModelButton />
 </template>
 
 <script setup>
 import { defineComponent } from "vue"
-import { HelloWorld, Counter } from "./components"
+import {
+  // HelloWorld,
+  // Counter ,
+  ModelButton
+} from "./components"
 </script>
 
 <style>
