@@ -2,25 +2,31 @@
   <img alt="Vue logo" src="./assets/logo.png" />
   <!-- <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" /> -->
   <!-- <Counter :counter="2" /> -->
-  <ModelButton />
+  <!-- <ModelButton /> -->
+  <EmitsOption @my-click="onClick" />
 </template>
 
 <script setup>
-import { defineComponent } from "vue"
-import {
-  // HelloWorld,
-  // Counter ,
-  ModelButton
-} from "./components"
+  import { defineComponent } from 'vue'
+  import {
+    // HelloWorld,
+    // Counter ,
+    // ModelButton,
+    EmitsOption,
+  } from './components'
+
+  const onClick = () => {
+    console.log('emits click')
+  }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+  }
 </style>
