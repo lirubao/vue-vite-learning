@@ -3,17 +3,24 @@
   <!-- <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" /> -->
   <!-- <Counter :counter="2" /> -->
   <!-- <ModelButton /> -->
-  <EmitsOption @my-click="onClick" />
+  <!-- <EmitsOption @my-click="onClick" /> -->
+  <!-- v-model的使用 -->
+  <VModel v-model="data.counter" />
 </template>
 
 <script setup>
-  import { defineComponent } from 'vue'
+  import { defineComponent, reactive } from 'vue'
   import {
     // HelloWorld,
     // Counter ,
     // ModelButton,
-    EmitsOption,
+    // EmitsOption,
+    VModel,
   } from './components'
+  // 动态数据
+  const data = reactive({
+    counter: 1,
+  })
 
   const onClick = () => {
     console.log('emits click')
