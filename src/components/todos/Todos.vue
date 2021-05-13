@@ -1,9 +1,8 @@
 <template>
   <div class="todo">
     <!-- 新增 -->
-    <input
-      type="text"
-      v-model="data.newTodo"
+    <EditTodo
+      v-model:todo-title="data.newTodo"
       @keyup.enter="addTodo"
       autofocus
       placeholder="新增今日待办"
@@ -23,10 +22,9 @@
           <button @click="removeTodo(todo)">X</button>
         </div>
         <!-- 编辑待办 -->
-        <input
-          type="text"
+        <EditTodo
           class="edit"
-          v-model="todo.title"
+          v-model:todo-title="todo.title"
           v-todo-focus="todo === data.editedTodo"
           @blur="doneEdit()"
           @keyup.enter="doneEdit()"
@@ -54,6 +52,7 @@
 <script setup lang="ts">
   import { computed, reactive, watchEffect } from 'vue'
   import type { Todo } from './'
+  import EditTodo from './EditTodo.vue'
   import { filters, todoStorage } from './'
 
   const nullTodo: Todo = {

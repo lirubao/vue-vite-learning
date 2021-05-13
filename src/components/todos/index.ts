@@ -1,5 +1,6 @@
 import { App } from '@vue/runtime-core'
 import Todos from './Todos.vue'
+import EditTodo from './EditTodo.vue'
 
 export { Todos }
 
@@ -40,4 +41,5 @@ export function useDirective(app: App<Element>) {
       el.focus()
     }
   })
+  app.component('EditTodo', EditTodo)
 }
