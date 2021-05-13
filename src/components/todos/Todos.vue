@@ -27,7 +27,7 @@
           type="text"
           class="edit"
           v-model="todo.title"
-          v-todo-focus="todo === editedTodo"
+          v-todo-focus="todo === data.editedTodo"
           @blur="doneEdit()"
           @keyup.enter="doneEdit()"
           @keyup.escape="cancelTodo(todo)"

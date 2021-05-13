@@ -1,4 +1,7 @@
-import { createApp } from "vue"
-import App from "./App.vue"
+import { createApp } from 'vue'
+import App from './App.vue'
+import { useDirective } from './components/todos'
 
-createApp(App).mount("#app")
+const app = createApp(App)
+useDirective(app)
+app.mount('#app')
