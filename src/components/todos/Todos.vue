@@ -52,22 +52,10 @@
 </template>
 
 <script setup lang="ts">
-  import { computed, reactive } from 'vue'
+  import { computed, reactive, watchEffect } from 'vue'
   import type { Todo } from './'
+  import { filters, todoStorage } from './'
 
-  const filters = {
-    all(todos: Todo[]) {
-      return todos
-    },
-    active(todos: Todo[]) {
-      return todos.filter((todo) => !todo.completed)
-    },
-    completed(todos: Todo[]) {
-      return todos.filter((todo) => todo.completed)
-    },
-  }
-
-  const todos: Todo[] = []
   const nullTodo: Todo = {
     id: 0,
     title: '',
@@ -76,7 +64,7 @@
 
   const data = reactive({
     newTodo: '',
-    todos: todos,
+    todos: todoStorage.fetch(),
     beforEditCache: '',
     editedTodo: nullTodo, // 正在编辑的todo
     visibility: 'all',
@@ -110,6 +98,10 @@
   const doneEdit = () => {
     data.editedTodo = nullTodo
   }
+
+  watchEffect(() => {
+    todoStorage.save(data.todos)
+  })
 </script>
 
 <style lang="scss" scoped>
