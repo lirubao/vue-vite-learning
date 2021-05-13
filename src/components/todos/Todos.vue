@@ -12,7 +12,7 @@
     <!-- 列表 -->
     <ul>
       <li
-        v-for="todo in data.todos"
+        v-for="todo in data.filterdTodos"
         :key="todo.id"
         :class="{ completed: todo.completed, editing: todo === data.editedTodo }"
       >
@@ -34,12 +34,38 @@
         />
       </li>
     </ul>
+    <!-- 过滤 -->
+    <p class="filters">
+      <span @click="data.visibility = 'all'" :class="{ selected: data.visibility === 'all' }"
+        >All</span
+      >
+      <span @click="data.visibility = 'active'" :class="{ selected: data.visibility === 'active' }"
+        >Active</span
+      >
+      <span
+        @click="data.visibility = 'completed'"
+        :class="{ selected: data.visibility === 'completed' }"
+        >Completed</span
+      >
+    </p>
   </div>
 </template>
 
 <script setup lang="ts">
-  import { defineProps, reactive } from 'vue'
+  import { computed, reactive } from 'vue'
   import type { Todo } from './'
+
+  const filters = {
+    all(todos: Todo[]) {
+      return todos
+    },
+    active(todos: Todo[]) {
+      return todos.filter((todo) => !todo.completed)
+    },
+    completed(todos: Todo[]) {
+      return todos.filter((todo) => todo.completed)
+    },
+  }
 
   const todos: Todo[] = []
   const nullTodo: Todo = {
@@ -47,13 +73,16 @@
     title: '',
     completed: false,
   }
-  // 属性定义
-  defineProps({})
+
   const data = reactive({
     newTodo: '',
     todos: todos,
     beforEditCache: '',
     editedTodo: nullTodo, // 正在编辑的todo
+    visibility: 'all',
+    filterdTodos: computed(() => {
+      return filters[data.visibility](data.todos)
+    }),
   })
 
   const addTodo = () => {
