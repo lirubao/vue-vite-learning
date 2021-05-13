@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="todo">
     <!-- 新增 -->
     <input
       type="text"
@@ -27,8 +27,9 @@
           type="text"
           class="edit"
           v-model="todo.title"
-          @blur="doneEdit(todo)"
-          @keyup.enter="doneEdit(todo)"
+          v-todo-focus="todo === editedTodo"
+          @blur="doneEdit()"
+          @keyup.enter="doneEdit()"
           @keyup.escape="cancelTodo(todo)"
         />
       </li>
@@ -41,14 +42,18 @@
   import type { Todo } from './'
 
   const todos: Todo[] = []
-
+  const nullTodo: Todo = {
+    id: 0,
+    title: '',
+    completed: false,
+  }
   // 属性定义
   defineProps({})
   const data = reactive({
     newTodo: '',
     todos: todos,
     beforEditCache: '',
-    editedTodo: null, // 正在编辑的todo
+    editedTodo: nullTodo, // 正在编辑的todo
   })
 
   const addTodo = () => {
@@ -70,11 +75,11 @@
   }
   const cancelTodo = (todo: Todo) => {
     todo.title = data.beforEditCache
-    data.editedTodo = null
+    data.editedTodo = nullTodo
   }
 
-  const doneEdit = (todo: Todo) => {
-    data.editedTodo = null
+  const doneEdit = () => {
+    data.editedTodo = nullTodo
   }
 </script>
 
@@ -91,5 +96,14 @@
   .view,
   .editing .edit {
     display: block;
+  }
+
+  .filters > span {
+    padding: 2px 4px;
+    margin-right: 4px;
+    border: 1px solid transparent;
+  }
+  .filters > span.selected {
+    border-color: rgba(173, 47, 47, 0.2);
   }
 </style>
