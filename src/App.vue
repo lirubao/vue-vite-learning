@@ -6,7 +6,8 @@
   <!-- <EmitsOption @my-click="onClick" /> -->
   <!-- v-model的使用 -->
   <!-- <VModel v-model="data.counter" /> -->
-  <Lifecycle />
+  <!-- <Lifecycle /> -->
+  <Todos />
 </template>
 
 <script setup>
@@ -17,7 +18,8 @@
     // ModelButton,
     // EmitsOption,
     // VModel,
-    Lifecycle,
+    // Lifecycle,
+    Todos,
   } from './components'
   // 动态数据
   const data = reactive({
