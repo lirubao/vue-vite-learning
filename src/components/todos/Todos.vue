@@ -10,27 +10,14 @@
     />
     <!-- 列表 -->
     <ul>
-      <li
+      <TodoItem
         v-for="todo in data.filterdTodos"
         :key="todo.id"
-        :class="{ completed: todo.completed, editing: todo === data.editedTodo }"
+        :todo="todo"
+        v-model:edited-todo="data.editedTodo"
+        @remove-todo="removeTodo"
       >
-        <!-- 绑定完成状态 -->
-        <div class="view">
-          <input type="checkbox" v-model="todo.completed" />
-          <label @dblclick="editTodo(todo)">{{ todo.title }}</label>
-          <button @click="removeTodo(todo)">X</button>
-        </div>
-        <!-- 编辑待办 -->
-        <EditTodo
-          class="edit"
-          v-model:todo-title="todo.title"
-          v-todo-focus="todo === data.editedTodo"
-          @blur="doneEdit()"
-          @keyup.enter="doneEdit()"
-          @keyup.escape="cancelTodo(todo)"
-        />
-      </li>
+      </TodoItem>
     </ul>
     <!-- 过滤 -->
     <p class="filters">
@@ -53,6 +40,7 @@
   import { computed, reactive, watchEffect } from 'vue'
   import type { Todo } from './'
   import EditTodo from './EditTodo.vue'
+  import TodoItem from './TodoItem.vue'
   import { filters, todoStorage } from './'
 
   const nullTodo: Todo = {
@@ -64,7 +52,7 @@
   const data = reactive({
     newTodo: '',
     todos: todoStorage.fetch(),
-    beforEditCache: '',
+
     editedTodo: nullTodo, // 正在编辑的todo
     visibility: 'all',
     filterdTodos: computed(() => {
@@ -80,44 +68,15 @@
     })
     data.newTodo = ''
   }
-
   const removeTodo = (todo: Todo) => {
     data.todos.splice(data.todos.indexOf(todo), 1)
   }
-
-  const editTodo = (todo: Todo) => {
-    data.beforEditCache = todo.title
-    data.editedTodo = todo
-  }
-  const cancelTodo = (todo: Todo) => {
-    todo.title = data.beforEditCache
-    data.editedTodo = nullTodo
-  }
-
-  const doneEdit = () => {
-    data.editedTodo = nullTodo
-  }
-
   watchEffect(() => {
     todoStorage.save(data.todos)
   })
 </script>
 
 <style lang="scss" scoped>
-  /* @import url(); 引入css类 */
-  .completed label {
-    text-decoration: line-through;
-  }
-  .edit,
-  .editing .view {
-    display: none;
-  }
-
-  .view,
-  .editing .edit {
-    display: block;
-  }
-
   .filters > span {
     padding: 2px 4px;
     margin-right: 4px;
