@@ -7,20 +7,21 @@
   <!-- v-model的使用 -->
   <!-- <VModel v-model="data.counter" /> -->
   <!-- <Lifecycle /> -->
-  <Todos />
+  <!-- <Todos /> -->
+  <router-view />
 </template>
 
 <script setup>
   import { defineComponent, reactive } from 'vue'
-  import {
-    // HelloWorld,
-    // Counter ,
-    // ModelButton,
-    // EmitsOption,
-    // VModel,
-    // Lifecycle,
-    Todos,
-  } from './components'
+  // import {
+  // HelloWorld,
+  // Counter ,
+  // ModelButton,
+  // EmitsOption,
+  // VModel,
+  // Lifecycle,
+  // Todos,
+  // } from './components'
   // 动态数据
   const data = reactive({
     counter: 1,
