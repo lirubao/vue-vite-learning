@@ -1,15 +1,23 @@
 import { h } from 'vue'
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import Dashboard from '../views/Dashboard.vue'
+import NotFound from '../views/NotFound.vue'
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes: [
     { path: '/', name: 'Dashboard', component: Dashboard },
     { path: '/todos', name: 'todos', component: () => import('comps/todos/Todos.vue') },
+    { path: '/:pathMatch(.*)*', name: 'not-found', component: NotFound },
   ],
 })
-
+// 使用命名导航至404页面
+// router.resolve({
+//   name:'not-found',
+//   params:{
+//     pathMatch:['not','found']
+//   }
+// })
 // 特性: 动态路由
 router.addRoute({
   path: '/about',
