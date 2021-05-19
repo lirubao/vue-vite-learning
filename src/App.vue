@@ -8,11 +8,13 @@
   <!-- <VModel v-model="data.counter" /> -->
   <!-- <Lifecycle /> -->
   <!-- <Todos /> -->
+  <p @click="add">{{ data.state.count }}</p>
   <router-view />
 </template>
 
 <script setup>
   import { defineComponent, reactive } from 'vue'
+  import { useStore } from 'vuex'
   // import {
   // HelloWorld,
   // Counter ,
@@ -23,10 +25,13 @@
   // Todos,
   // } from './components'
   // 动态数据
+  const store = useStore()
+
   const data = reactive({
     counter: 1,
+    state: store.state,
   })
-
+  const add = () => store.commit('add')
   const onClick = () => {
     console.log('emits click')
   }
