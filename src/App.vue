@@ -2,17 +2,20 @@
   <img alt="Vue logo" src="./assets/logo.png" />
   <BasicTab />
   <BasicPage />
+  <Getters />
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue"
 import BasicTab from "comps/Tab/BasicTab.vue"
 import BasicPage from "comps/Page/BasicPage.vue"
+import Getters from "comps/Getters.vue"
 export default defineComponent({
   name: "App",
   components: {
     BasicTab,
-    BasicPage
+    BasicPage,
+    Getters
   }
 })
 </script>
