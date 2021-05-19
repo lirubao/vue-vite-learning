@@ -2,44 +2,44 @@
   <div>
     <a
       href="JavaScript:;"
-      :class="[{ current: curIdx === 0 }]"
-      @click="changeTab(0)"
+      :class="[{ current: data.curIdx === 0 }]"
+      @click="setCurIdx(0)"
       >选项1</a
     >
     <a
       href="JavaScript:;"
-      :class="[{ current: curIdx === 1 }]"
-      @click="changeTab(1)"
+      :class="[{ current: data.curIdx === 1 }]"
+      @click="setCurIdx(1)"
       >选项2</a
     >
     <a
       href="JavaScript:;"
-      :class="[{ current: curIdx === 2 }]"
-      @click="changeTab(2)"
+      :class="[{ current: data.curIdx === 2 }]"
+      @click="setCurIdx(2)"
       >选项3</a
     >
     <a
       href="JavaScript:;"
-      :class="[{ current: curIdx === 3 }]"
-      @click="changeTab(3)"
+      :class="[{ current: data.curIdx === 3 }]"
+      @click="setCurIdx(3)"
       >选项4</a
     >
   </div>
 </template>
 
 <script setup>
-import { defineProps, useContext } from "vue"
-// 属性定义
-defineProps({
-  curIdx: {
-    type: Number,
-    default: 0
-  }
-})
+import { defineProps, useContext, reactive, computed } from "vue"
+import { mapMutations, mapState, useStore } from "vuex"
+
 const ctx = useContext()
-const changeTab = (index) => {
-  ctx.emit("changeTab", index)
-}
+const store = useStore()
+//
+const data = reactive({
+  // 获取state中的值
+  curIdx: computed(() => store.state.curIdx)
+})
+// 获取mutations中的方法
+const setCurIdx = (index) => store.commit("setCurIdx", index)
 </script>
 <style lang="scss" scoped>
 /* @import url(); 引入css类 */
