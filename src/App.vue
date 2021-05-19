@@ -1,16 +1,28 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <BasicTab :cur-idx="curIdx" @changeTab="changeTab" />
+  <BasicPage :cur-idx="curIdx" />
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue"
-import HelloWorld from "./components/HelloWorld.vue"
-
+import { defineComponent, ref } from "vue"
+import BasicTab from "comps/Tab/BasicTab.vue"
+import BasicPage from "comps/Page/BasicPage.vue"
 export default defineComponent({
   name: "App",
   components: {
-    HelloWorld
+    BasicTab,
+    BasicPage
+  },
+  setup() {
+    const curIdx = ref<number>(0)
+    const changeTab = (index: number): void => {
+      curIdx.value = index
+    }
+    return {
+      curIdx,
+      changeTab
+    }
   }
 })
 </script>
