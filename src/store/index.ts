@@ -5,13 +5,17 @@ const store = createStore({
   state: {
     curIdx: 0,
     name: "小李",
-    age: 18
+    age: 18,
+    data: []
   },
   // mutations的使用是更改state中的内容
   // mutations不能异步操作
   mutations: {
     setCurIdx(state, index) {
       state.curIdx = index
+    },
+    setData(state, data) {
+      state.data = data
     }
   },
   getters: {
@@ -25,7 +29,8 @@ const store = createStore({
       const { key, type } = payload
       const api = `/query?type=${type}&key=${key}`
       axios(api).then((res) => {
-        console.log(res)
+        // actions -> 调用mutations中的setData方法,把数据保存到state.data中
+        ctx.commit("setData", res.data.result)
       })
     }
   }
