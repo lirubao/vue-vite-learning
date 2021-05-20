@@ -3,6 +3,7 @@
   <BasicTab />
   <BasicPage />
   <Getters />
+  <Actions />
 </template>
 
 <script lang="ts">
@@ -10,12 +11,14 @@ import { defineComponent } from "vue"
 import BasicTab from "comps/Tab/BasicTab.vue"
 import BasicPage from "comps/Page/BasicPage.vue"
 import Getters from "comps/Getters.vue"
+import Actions from "comps/Actions.vue"
 export default defineComponent({
   name: "App",
   components: {
     BasicTab,
     BasicPage,
-    Getters
+    Getters,
+    Actions
   }
 })
 </script>
