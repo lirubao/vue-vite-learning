@@ -6,7 +6,7 @@ import { wrapperEnv, getRootPath } from "./build/utils"
 export default ({ command, mode }: ConfigEnv): UserConfig => {
   const root = process.cwd()
   const env = loadEnv(mode, root)
-  const isBuild = command === "build"
+  const isBuild = command === "serve"
   const viteEnv = wrapperEnv(env)
   const { VITE_PORT } = viteEnv
   console.log(isBuild)
