@@ -1,9 +1,12 @@
 <template>
-  <rotuer-view />
+  <div>
+    <router-link to="/">Home</router-link>
+    |
+    <router-link to="/about">About</router-link>
+  </div>
+  <router-view />
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
-<style>
-</style>
+<style></style>
