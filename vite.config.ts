@@ -9,6 +9,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
   const isBuild = command === "build"
   const viteEnv = wrapperEnv(env)
   const { VITE_PORT } = viteEnv
+  console.log(isBuild)
 
   return {
     root,
@@ -19,6 +20,13 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       alias: {
         "@": getRootPath("src"),
         comps: getRootPath("src/components")
+      }
+    },
+    css: {
+      preprocessorOptions: {
+        less: {
+          javascriptEnabled: true
+        }
       }
     },
     plugins: createVitePlugins(viteEnv, isBuild)

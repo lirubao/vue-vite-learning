@@ -11,12 +11,13 @@ export function isProdFn(mode: string): boolean {
 }
 
 /**
+ * 是否生成包预览
  * Whether to generate package preview
  */
 export function isReportMode(): boolean {
   return process.env.REPORT === "true"
 }
-
+// 读取所有环境变量配置文件到process.env
 // Read all environment variable configuration files to process.env
 export function wrapperEnv(envConf: Recordable): ViteEnv {
   const ret: any = {}
@@ -41,6 +42,7 @@ export function wrapperEnv(envConf: Recordable): ViteEnv {
 }
 
 /**
+ * 获取以指定前缀开始的环境变量
  * Get the environment variables starting with the specified prefix
  * @param match prefix
  * @param confFiles ext
@@ -69,6 +71,7 @@ export function getEnvConfig(
 }
 
 /**
+ * 获取用户根目录
  * Get user root directory
  * @param dir file path
  */
